@@ -13,15 +13,15 @@ def read_csv(session: SparkSession, file_path: str) -> DataFrame:
 
 def spark_sql_query(spark: SparkSession, data: DataFrame):
     # create tempviw
-    data.createOrReplaceTempView("penguins")
+    data.createOrReplaceTempView("Crime_Data_de")
     
     # Spark SQL to group by
     result = spark.sql("""
-        SELECT species, 
-               MAX(bill_length_mm) as max_bill_length, 
-               MIN(bill_length_mm) as min_bill_length
-        FROM penguins
-        GROUP BY species
+        SELECT Vict_Sex, 
+               mean(Vict_Age) as mean_vic_age, 
+               max(Vict_Age) as max_vic_age
+        FROM Crime_Date_de
+        GROUP BY Vict_Sex
     """)
     result.show()
     return result
@@ -29,11 +29,8 @@ def spark_sql_query(spark: SparkSession, data: DataFrame):
 def transform(spark: SparkSession, data: DataFrame) -> DataFrame:
     # create transform column
     conditions = [
-        (F.col("bill_length_mm") < 40, "Short"),
-        ((F.col("bill_length_mm") >= 40) & (F.col("bill_length_mm") < 50), "Medium"),
-        (F.col("bill_length_mm") >= 50, "Long")
+        (F.col("Vict_Age") < 18, "y"),
+        (F.col("Vict_Age") >= 19, "n")
     ]
+    return data.withColumn("ifchild", F.when(conditions[0][0], conditions[0][1]).otherwise(conditions[1][1]))
 
-    return data.withColumn("bill_length_category", F.when(conditions[0][0], conditions[0][1])
-                                                    .when(conditions[1][0], conditions[1][1])
-                                                    .otherwise(conditions[2][1]))
