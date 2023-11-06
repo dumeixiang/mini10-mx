@@ -21,3 +21,6 @@ part 3transfor data and create new column "ifchild":
 
 * Output data or summary report (PDF or markdown)
 
+Par 1； original output:
+![read_csv](https://github.com/dumeixiang/mini10-mx/blob/main/Screen%20Shot%202023-11-05%20at%2010.38.47%20PM.png)
+![spark_csv](https://github.com/dumeixiang/mini10-mx/blob/main/Screen%20Shot%202023-11-05%20at%2010.39.28%20PM.png)
