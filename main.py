@@ -17,5 +17,5 @@ if __name__ == "__main__":
 
     #  
     df_with_category = transform(spark, df)
-    print("Data After Adding Bill Length Category:")
+    print("Data After Adding ifchild:")
     df_with_category.show()
