@@ -12,10 +12,10 @@ def read_csv(session: SparkSession, file_path: str) -> DataFrame:
     return data_file
 
 def spark_sql_query(spark: SparkSession, data: DataFrame):
-    # 일시적 뷰 생성
+    # create tempviw
     data.createOrReplaceTempView("penguins")
     
-    # Spark SQL을 사용하여 쿼리 실행
+    # Spark SQL to group by
     result = spark.sql("""
         SELECT species, 
                MAX(bill_length_mm) as max_bill_length, 
@@ -27,7 +27,7 @@ def spark_sql_query(spark: SparkSession, data: DataFrame):
     return result
 
 def transform(spark: SparkSession, data: DataFrame) -> DataFrame:
-    # bill_length_mm 컬럼을 기준으로 bill_length_category 컬럼 추가
+    # create transform column
     conditions = [
         (F.col("bill_length_mm") < 40, "Short"),
         ((F.col("bill_length_mm") >= 40) & (F.col("bill_length_mm") < 50), "Medium"),
