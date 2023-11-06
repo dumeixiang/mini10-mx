@@ -10,4 +10,9 @@ Grading Criteria
   
 Deliverables
 * PySpark script
+
+part 1: intializing pyspark:
+![int](Screen Shot 2023-11-05 at 10.02.16 PM.png)
+
 * Output data or summary report (PDF or markdown)
+
