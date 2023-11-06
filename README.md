@@ -10,6 +10,7 @@ Grading Criteria
   
 Deliverables
 * PySpark script
+
 part 1: intializing pyspark:
 ![int](https://github.com/dumeixiang/mini10-mx/blob/main/Screen%20Shot%202023-11-05%20at%2010.02.16%20PM.png)
 
